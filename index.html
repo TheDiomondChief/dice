@@ -1,0 +1,52 @@
+# dice<html>
+
+<head>
+
+    <title>Rolling Dice</title>
+
+    <style>
+        .bars {
+            background: blue;
+            height: 10px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Rolling Dice</h1>
+    <script>
+        var counts = ["", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        function rollDice() {
+            var dice = 1 + Math.floor(Math.random() * 6);
+            return dice
+        }
+
+        function result() {
+            for (var i = 1; i <= 1000; i++) {
+                var sum = rollDice() + rollDice();
+                counts[sum]++;
+            }
+            for (var j = 2; j < counts.length; j++) {
+                var number = document.createElement("div");
+                number.textContent = j + ": " + counts[j];
+                document.body.appendChild(number)
+
+            }
+        }
+        result()
+
+        function createBarGraph() {
+            for (let k = 2; k < counts.length; k++) {
+                let barDivs = document.createElement("div");
+                barDivs.className = "bars";
+                barDivs.style.width = counts[k] + "px";
+                document.body.appendChild(barDivs)
+            }
+        }
+        createBarGraph()
+    </script>
+</body>
+
+</html>
